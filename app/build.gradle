@@ -2,14 +2,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-//plugins {
-//    id 'com.android.application'
-//    id 'kotlin-android'
-//}
-
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
+
+    lintOptions {
+        abortOnError false
+    }
 
     allprojects {
         repositories {
@@ -68,4 +67,6 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$logging_version"
 
     implementation 'com.github.shadowalker77:wp7progressbar:1.0.5'
+
+    implementation 'com.squareup.picasso:picasso:2.5.2'
 }

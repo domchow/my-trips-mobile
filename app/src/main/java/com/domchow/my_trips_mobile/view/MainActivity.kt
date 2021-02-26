@@ -2,6 +2,7 @@ package com.domchow.my_trips_mobile.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.ActionBar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.domchow.my_trips_mobile.R
@@ -16,6 +17,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM;
+        supportActionBar?.setCustomView(R.layout.custom_toolbar);
 
         mainActivityViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
 
@@ -24,7 +27,6 @@ class MainActivity : AppCompatActivity() {
             .observe(this, Observer { serviceSetterGetter ->
                 val adapter = TripAdapter(this, serviceSetterGetter)
                 trips_list_view.adapter = adapter
-
             })
     }
 }

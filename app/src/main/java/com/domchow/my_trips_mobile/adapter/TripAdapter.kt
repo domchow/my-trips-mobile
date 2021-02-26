@@ -32,7 +32,7 @@ class TripAdapter(
 
         titleTextView.text = trip.city
         subtitleTextView.text = trip.date
-        detailTextView.text = "LABEL"
+        detailTextView.text = "EDIT"
 
         Picasso.with(context).load(R.mipmap.ic_launcher).into(thumbnailImageView)
 

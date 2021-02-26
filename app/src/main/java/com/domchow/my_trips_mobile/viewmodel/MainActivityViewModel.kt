@@ -14,5 +14,4 @@ class MainActivityViewModel : ViewModel() {
         servicesLiveData = MainActivityRepository.getServicesApiCall()
         return servicesLiveData
     }
-
 }

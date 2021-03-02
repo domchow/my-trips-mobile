@@ -30,6 +30,7 @@
 
         <Button
             android:layout_width="wrap_content"
+            android:id="@+id/topBarAdd"
             android:layout_height="36dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"

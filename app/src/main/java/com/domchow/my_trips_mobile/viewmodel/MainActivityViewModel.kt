@@ -11,7 +11,10 @@ class MainActivityViewModel : ViewModel() {
     var servicesLiveData: MutableLiveData<List<Trip>>? = null
 
     fun getTrips() : LiveData<List<Trip>>? {
-        servicesLiveData = MainActivityRepository.getServicesApiCall()
-        return servicesLiveData
+        return MainActivityRepository.getAllTripsApiCall()
+    }
+
+    fun createTrip(trip: Trip) {
+        MainActivityRepository.postTrip(trip)
     }
 }

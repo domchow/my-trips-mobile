@@ -1,9 +1,12 @@
 package com.domchow.my_trips_mobile.view
 
+import android.content.DialogInterface
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.DatePicker
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
@@ -23,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var mainActivityViewModel: MainActivityViewModel
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -43,10 +47,9 @@ class MainActivity : AppCompatActivity() {
             val mBuilder = AlertDialog.Builder(this)
                 .setView(myDialogView)
                 .setTitle("ADD TRIP")
-//                .setNegativeButton("DONE", null)
                 .show()
 
-            mBuilder.show()
+            mBuilder.create()
 
             myDialogView.dialogSubmit.setOnClickListener {
                 fun DatePicker.getDate(): Date {
@@ -58,9 +61,27 @@ class MainActivity : AppCompatActivity() {
                 var strDate = dateFormat.format( myDialogView.dialog_date.getDate())
 
                 val trip = Trip(city = myDialogView.dialog_city.text.toString(), date = strDate)
-
                 mainActivityViewModel.createTrip(trip)
+                mBuilder.dismiss()
             }
+
+            mBuilder.show()
         }
     }
 }
+
+//class onSumbitClickListener : DialogInterface.OnClickListener {
+//    override fun onClick(var1: DialogInterface, var2: Int) {
+//        fun DatePicker.getDate(): Date {
+//            val calendar = Calendar.getInstance()
+//            calendar.set(year, month, dayOfMonth)
+//            return calendar.time
+//        }
+//        val dateFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd")
+//        val strDate = dateFormat.format( myDialogView.dialog_date.getDate())
+//
+//        val trip = Trip(city = myDialogView.dialog_city.text.toString(), date = strDate)
+//
+//        mainActivityViewModel.createTrip(trip)
+//    }
+//}

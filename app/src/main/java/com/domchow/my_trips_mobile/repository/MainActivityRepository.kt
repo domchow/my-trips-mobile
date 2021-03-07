@@ -43,4 +43,30 @@ object MainActivityRepository {
             }
         })
     }
+
+    fun putTrip(trip: Trip, id: Int) {
+        val call = RetrofitClient.apiInterface.putTrip(id, trip)
+        call.enqueue(object : Callback<Trip> {
+            override fun onFailure(call: Call<Trip>, t: Throwable) {
+                Log.v("DEBUG : ", t.message.toString())
+            }
+
+            override fun onResponse(call: Call<Trip>, response: Response<Trip>) {
+                Log.v("DEBUG : ", response.body().toString())
+            }
+        })
+    }
+
+    fun deleteTrip(id: Int) {
+        val call = RetrofitClient.apiInterface.deleteTrip(id)
+        call.enqueue(object : Callback<Trip> {
+            override fun onFailure(call: Call<Trip>, t: Throwable) {
+                Log.v("DEBUG : ", t.message.toString())
+            }
+
+            override fun onResponse(call: Call<Trip>, response: Response<Trip>) {
+                Log.v("DEBUG : ", response.body().toString())
+            }
+        })
+    }
 }

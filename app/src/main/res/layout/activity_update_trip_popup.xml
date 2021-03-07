@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/linear_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="10dp">
 
@@ -16,10 +16,10 @@
 
     <DatePicker
         android:id="@+id/dialog_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:datePickerMode="spinner"
-        android:calendarViewShown="false"/>
+        android:layout_width="match_parent"
+        android:layout_height="173dp"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner" />
 
     <Button
         android:id="@+id/dialogSubmit"

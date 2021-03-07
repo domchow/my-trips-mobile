@@ -1,6 +1,5 @@
 package com.domchow.my_trips_mobile.view
 
-import android.content.DialogInterface
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -30,11 +29,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //TOP_BAR
         supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
         supportActionBar?.setCustomView(R.layout.custom_toolbar)
 
         mainActivityViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
 
+        //POPULATE List
         mainActivityViewModel
             .getTrips()!!
             .observe(this, Observer { serviceSetterGetter ->
@@ -42,6 +44,7 @@ class MainActivity : AppCompatActivity() {
                 trips_list_view.adapter = adapter
             })
 
+        //ADD BUTTON HANDLE
         topBarAdd.setOnClickListener {
             val myDialogView = LayoutInflater.from(this).inflate(R.layout.activity_update_trip_popup, null)
             val mBuilder = AlertDialog.Builder(this)
@@ -67,21 +70,10 @@ class MainActivity : AppCompatActivity() {
 
             mBuilder.show()
         }
+
+        topBarRefresh.setOnClickListener {
+            mainActivityViewModel
+                .getTrips()
+        }
     }
 }
-
-//class onSumbitClickListener : DialogInterface.OnClickListener {
-//    override fun onClick(var1: DialogInterface, var2: Int) {
-//        fun DatePicker.getDate(): Date {
-//            val calendar = Calendar.getInstance()
-//            calendar.set(year, month, dayOfMonth)
-//            return calendar.time
-//        }
-//        val dateFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd")
-//        val strDate = dateFormat.format( myDialogView.dialog_date.getDate())
-//
-//        val trip = Trip(city = myDialogView.dialog_city.text.toString(), date = strDate)
-//
-//        mainActivityViewModel.createTrip(trip)
-//    }
-//}

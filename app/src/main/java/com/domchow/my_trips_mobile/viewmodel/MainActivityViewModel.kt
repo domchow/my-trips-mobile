@@ -17,4 +17,12 @@ class MainActivityViewModel : ViewModel() {
     fun createTrip(trip: Trip) {
         MainActivityRepository.postTrip(trip)
     }
+
+    fun updateTrip(trip: Trip, id: Int) {
+        MainActivityRepository.putTrip(trip, id)
+    }
+
+    fun deleteTrip(id: Int) {
+        MainActivityRepository.deleteTrip(id)
+    }
 }

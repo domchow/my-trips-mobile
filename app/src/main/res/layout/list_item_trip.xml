@@ -19,23 +19,33 @@
       android:layout_alignParentLeft="true"
       android:layout_marginLeft="4dp" />
 
-  <TextView
-    android:id="@+id/recipe_list_detail"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentEnd="true"
-    android:layout_centerVertical="true"
-    android:layout_marginEnd="2dp"
-    android:layout_marginStart="4dp"
-    android:maxLines="1"
-    android:paddingEnd="4dp"
-    android:textColor="#000000"
-    android:textSize="12sp"
-    tools:text="Detail"
+  <ImageButton
+      android:id="@+id/list_item_delete"
+      android:scaleType="fitXY"
+      android:layout_width="35dp"
+      android:layout_height="35dp"
+      android:layout_alignParentEnd="true"
       android:layout_alignParentRight="true"
-      android:layout_marginRight="2dp"
-      android:layout_marginLeft="4dp"
-      android:paddingRight="4dp" />
+      android:layout_centerVertical="true"
+      android:background="@null"
+      android:maxLines="1"
+      android:textColor="#000000"
+      android:src="@drawable/ic_delete_24px" />
+
+  <ImageButton
+      android:id="@+id/list_item_update"
+      android:scaleType="fitXY"
+      android:layout_width="35dp"
+      android:layout_height="35dp"
+      android:layout_alignLeft="@id/list_item_delete"
+      android:layout_alignRight="@id/recipe_list_text_layout"
+      android:layout_centerVertical="true"
+      android:layout_marginRight="8dp"
+      android:background="@null"
+      android:maxLines="1"
+      android:textColor="#000000"
+      android:src="@drawable/ic_create_24px"
+      android:layout_alignEnd="@id/recipe_list_text_layout"/>
 
   <RelativeLayout
     android:id="@+id/recipe_list_text_layout"
@@ -43,9 +53,10 @@
     android:layout_height="wrap_content"
     android:layout_centerVertical="true"
     android:layout_toEndOf="@id/recipe_list_thumbnail"
-    android:layout_toStartOf="@id/recipe_list_detail"
-      android:layout_toRightOf="@id/recipe_list_thumbnail"
-      android:layout_toLeftOf="@id/recipe_list_detail">
+    android:layout_toStartOf="@id/list_item_delete"
+    android:layout_toRightOf="@id/recipe_list_thumbnail"
+    android:layout_toLeftOf="@id/list_item_delete"
+      >
 
     <TextView
       android:id="@+id/recipe_list_title"

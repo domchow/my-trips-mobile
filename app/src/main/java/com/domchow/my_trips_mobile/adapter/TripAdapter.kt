@@ -4,9 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import com.domchow.my_trips_mobile.R
 import com.domchow.my_trips_mobile.model.Trip
 import com.squareup.picasso.Picasso
@@ -14,7 +12,9 @@ import com.squareup.picasso.Picasso
 
 class TripAdapter(
     private val context: Context,
-    private val dataSource: List<Trip>
+    private val dataSource: List<Trip>,
+    private val onDeleteClick : (tripId: Int) -> Unit,
+    private val onUpdateClick : (tripId: Int) -> Unit
 ) : BaseAdapter() {
 
     private val inflater: LayoutInflater =
@@ -25,14 +25,25 @@ class TripAdapter(
 
         val titleTextView = rowView.findViewById(R.id.recipe_list_title) as TextView
         val subtitleTextView = rowView.findViewById(R.id.recipe_list_subtitle) as TextView
-        val detailTextView = rowView.findViewById(R.id.recipe_list_detail) as TextView
+        val deleteButton = rowView.findViewById(R.id.list_item_delete) as ImageButton
+        val updateButton = rowView.findViewById(R.id.list_item_update) as ImageButton
         val thumbnailImageView = rowView.findViewById(R.id.recipe_list_thumbnail) as ImageView
 
         val trip = getItem(position) as Trip
 
         titleTextView.text = trip.city
         subtitleTextView.text = trip.date
-        detailTextView.text = "EDIT"
+
+        deleteButton.setOnClickListener{
+            val tripId = dataSource[position].id
+            onDeleteClick(tripId!!)
+        }
+
+        updateButton.setOnClickListener{
+            val tripId = dataSource[position].id
+            onUpdateClick(tripId!!)
+        }
+
 
         Picasso.with(context).load(R.mipmap.ic_launcher).into(thumbnailImageView)
 

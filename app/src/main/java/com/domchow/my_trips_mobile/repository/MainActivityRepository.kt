@@ -12,9 +12,9 @@ object MainActivityRepository {
 
     val serviceSetterGetter = MutableLiveData<List<Trip>>()
 
-    fun getServicesApiCall(): MutableLiveData<List<Trip>> {
+    fun getAllTripsApiCall(): MutableLiveData<List<Trip>> {
 
-        val call = RetrofitClient.apiInterface.getServices()
+        val call = RetrofitClient.apiInterface.getTrips()
         call.enqueue(object : Callback<List<Trip>> {
             override fun onFailure(call: Call<List<Trip>>, t: Throwable) {
                 Log.v("DEBUG : ", t.message.toString())
@@ -28,7 +28,45 @@ object MainActivityRepository {
                 serviceSetterGetter.value = response.body()
             }
         })
-
         return serviceSetterGetter
+    }
+
+    fun postTrip(trip: Trip) {
+        val call = RetrofitClient.apiInterface.postTrip(trip)
+        call.enqueue(object : Callback<Trip> {
+            override fun onFailure(call: Call<Trip>, t: Throwable) {
+                Log.v("DEBUG : ", t.message.toString())
+            }
+
+            override fun onResponse(call: Call<Trip>, response: Response<Trip>) {
+                Log.v("DEBUG : ", response.body().toString())
+            }
+        })
+    }
+
+    fun putTrip(trip: Trip, id: Int) {
+        val call = RetrofitClient.apiInterface.putTrip(id, trip)
+        call.enqueue(object : Callback<Trip> {
+            override fun onFailure(call: Call<Trip>, t: Throwable) {
+                Log.v("DEBUG : ", t.message.toString())
+            }
+
+            override fun onResponse(call: Call<Trip>, response: Response<Trip>) {
+                Log.v("DEBUG : ", response.body().toString())
+            }
+        })
+    }
+
+    fun deleteTrip(id: Int) {
+        val call = RetrofitClient.apiInterface.deleteTrip(id)
+        call.enqueue(object : Callback<Trip> {
+            override fun onFailure(call: Call<Trip>, t: Throwable) {
+                Log.v("DEBUG : ", t.message.toString())
+            }
+
+            override fun onResponse(call: Call<Trip>, response: Response<Trip>) {
+                Log.v("DEBUG : ", response.body().toString())
+            }
+        })
     }
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linear_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <EditText
+        android:id="@+id/dialog_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="City"
+        android:inputType="textPersonName"/>
+
+    <DatePicker
+        android:id="@+id/dialog_date"
+        android:layout_width="match_parent"
+        android:layout_height="173dp"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner" />
+
+    <Button
+        android:id="@+id/dialogSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:gravity="center" />
+
+</LinearLayout>

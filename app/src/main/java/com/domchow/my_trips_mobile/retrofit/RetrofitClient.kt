@@ -9,9 +9,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
 
-    const val baseUrl = "http://10.0.2.2:8080"
+    private const val baseUrl = "http://10.0.2.2:8080"
 
-    val retrofitClient: Retrofit.Builder by lazy {
+    private val retrofitClient: Retrofit.Builder by lazy {
 
         val levelType: Level
         if (BuildConfig.BUILD_TYPE.contentEquals("debug"))
